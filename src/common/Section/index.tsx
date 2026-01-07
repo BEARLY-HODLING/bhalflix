@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useInView } from "framer-motion";
 
 import MoviesSlides from "./MoviesSlides";
-import { SkelatonLoader } from "../Loader";
+import { SkeletonLoader } from "../Loader";
 import Error from "../Error";
 
 import { useGetShowsQuery } from "@/services/TMDB";
@@ -50,25 +50,27 @@ const Section: FC<SectionProps> = ({
     },
     {
       skip: !inView,
-    }
+    },
   );
 
   const errorMessage = isError ? getErrorMessage(error) : "";
 
   const sectionStyle = cn(
     `sm:py-[20px] xs:py-[18.75px] py-[16.75px] font-nunito`,
-    className
+    className,
   );
   const linkStyle = cn(
     `sm:py-1 py-[2px] sm:text-[14px] xs:text-[12.75px] text-[12px] sm:px-4 px-3 rounded-full  dark:text-gray-300 hover:-translate-y-1 transition-all duration-300`,
-    theme === "Dark" ? "view-all-btn--dark" : "view-all-btn--light"
+    theme === "Dark" ? "view-all-btn--dark" : "view-all-btn--light",
   );
 
   return (
     <section className={sectionStyle} ref={ref}>
       <div className="flex flex-row justify-between items-center mb-[22.75px]">
         <div className=" relative">
-          <h3 className="sm:text-[22.25px] xs:text-[20px] text-[18.75px] dark:text-gray-50 sm:font-bold font-semibold">{title}</h3>
+          <h3 className="sm:text-[22.25px] xs:text-[20px] text-[18.75px] dark:text-gray-50 sm:font-bold font-semibold">
+            {title}
+          </h3>
           <div className="line" />
         </div>
         {!showSimilarShows && (
@@ -77,16 +79,13 @@ const Section: FC<SectionProps> = ({
           </Link>
         )}
       </div>
-      <div className="sm:h-[312px] xs:h-[309px] h-[266px]">
+      <div className="sm:h-[420px] xs:h-[380px] h-[340px]">
         {isLoading ? (
-          <SkelatonLoader />
+          <SkeletonLoader />
         ) : isError ? (
           <Error error={String(errorMessage)} className="h-full text-[18px]" />
         ) : (
-          <MoviesSlides
-            movies={data.results.slice(0, 10)}
-            category={category}
-          />
+          <MoviesSlides movies={data.results} category={category} />
         )}
       </div>
     </section>

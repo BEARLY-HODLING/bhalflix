@@ -3,7 +3,8 @@ import { BsMoonStarsFill } from "react-icons/bs";
 import { GoDeviceDesktop } from "react-icons/go";
 import { AiOutlineHome } from "react-icons/ai";
 import { TbMovie } from "react-icons/tb";
-import { MdOutlineLiveTv } from "react-icons/md";
+import { MdOutlineLiveTv, MdExplore } from "react-icons/md";
+import { BsBookmarkHeart } from "react-icons/bs";
 
 import { ITheme, INavLink } from "../types";
 
@@ -14,6 +15,11 @@ export const navLinks: INavLink[] = [
     icon: AiOutlineHome,
   },
   {
+    title: "discover",
+    path: "/discover",
+    icon: MdExplore,
+  },
+  {
     title: "movies",
     path: "/movie",
     icon: TbMovie,
@@ -22,6 +28,11 @@ export const navLinks: INavLink[] = [
     title: "tv series",
     path: "/tv",
     icon: MdOutlineLiveTv,
+  },
+  {
+    title: "watchlist",
+    path: "/watchlist",
+    icon: BsBookmarkHeart,
   },
 ];
 
@@ -42,37 +53,39 @@ export const themeOptions: ITheme[] = [
 
 export const footerLinks = [
   "home",
-  "live",
-  "you must watch",
-  "contact us",
-  "FAQ",
-  "Recent release",
-  "term of services",
-  "premium",
-  "Top IMDB",
-  "About us",
-  "Privacy policy",
+  "discover",
+  "watchlist",
+  "movies",
+  "tv series",
 ];
 
 export const sections = [
   {
-    title: "Trending movies",
+    title: "Trending Now",
     category: "movie",
     type: "popular",
   },
   {
-    title: "Top rated movies",
+    title: "New Releases",
     category: "movie",
-    type: "top_rated",
+    type: "now_playing",
   },
   {
-    title: "Trending series",
+    title: "Trending TV Series",
     category: "tv",
     type: "popular",
   },
   {
-    title: "Top rated series",
-    category: "tv",
+    title: "Top Picks",
+    category: "movie",
     type: "top_rated",
   },
 ];
+
+export {
+  moods,
+  genres,
+  yearOptions,
+  ratingOptions,
+  getMoodById,
+} from "./moods";

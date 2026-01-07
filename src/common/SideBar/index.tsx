@@ -8,6 +8,7 @@ import Overlay from "../Overlay";
 
 import { useGlobalContext } from "@/context/globalContext";
 import { useTheme } from "@/context/themeContext";
+import { useAudio } from "@/context/audioContext";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { useMotion } from "@/hooks/useMotion";
 import { navLinks, themeOptions } from "@/constants";
@@ -18,6 +19,7 @@ import { cn } from "@/utils/helper";
 const SideBar: React.FC = () => {
   const { showSidebar, setShowSidebar } = useGlobalContext();
   const { theme } = useTheme();
+  const { soundEnabled, toggleSound } = useAudio();
   const { slideIn } = useMotion();
 
   const closeSideBar = useCallback(() => {
@@ -26,7 +28,7 @@ const SideBar: React.FC = () => {
 
   const { ref } = useOnClickOutside({
     action: closeSideBar,
-    enable: showSidebar
+    enable: showSidebar,
   });
 
   return (
@@ -41,7 +43,7 @@ const SideBar: React.FC = () => {
             ref={ref}
             className={cn(
               `fixed top-0 right-0 sm:w-[40%] xs:w-[220px] w-[195px] h-full z-[25] overflow-y-auto shadow-md md:hidden p-4 pb-0 dark:text-gray-200 text-gray-600`,
-              theme === "Dark" ? "dark-glass" : "light-glass"
+              theme === "Dark" ? "dark-glass" : "light-glass",
             )}
           >
             <div className="flex items-center justify-center  ">
@@ -69,8 +71,18 @@ const SideBar: React.FC = () => {
                 })}
               </ul>
 
+              <h3 className={cn(`mt-4 `, sideBarHeading)}>Sound</h3>
+              <button
+                onClick={toggleSound}
+                className="flex items-center gap-2 xs:text-[14px] text-[13.5px] font-medium py-1 px-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                <span>{soundEnabled ? "On" : "Off"}</span>
+                <span className="text-lg">{soundEnabled ? "🔊" : "🔇"}</span>
+              </button>
+
               <p className="xs:text-[12px] text-[11.75px] mt-auto sm:mb-6 mb-[20px] text-center font-nunito dark:text-gray-200">
-                &copy; 2023 by tMovies. All right reserved.
+                &copy; {new Date().getFullYear()} by BhalFlix. All rights
+                reserved.
               </p>
             </div>
           </m.nav>

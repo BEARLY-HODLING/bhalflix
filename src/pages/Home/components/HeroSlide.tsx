@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from "react";
 import { m } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const HeroSlide = ({ movie }: { movie: IMovie }) => {
     <div
       className={cn(
         maxWidth,
-        ` mx-auto flex items-center h-full  flex-row lg:gap-32 sm:gap-20`
+        ` mx-auto flex items-center h-full  flex-row lg:gap-32 sm:gap-20`,
       )}
     >
       <m.div
@@ -47,7 +47,9 @@ const HeroSlide = ({ movie }: { movie: IMovie }) => {
           {title}
         </m.h2>
         <m.p variants={fadeDown} className={paragraph}>
-          {overview.length > 180 ? `${overview.substring(0, 180)}...` : overview}
+          {overview.length > 180
+            ? `${overview.substring(0, 180)}...`
+            : overview}
         </m.p>
         <m.div
           variants={fadeDown}
@@ -66,8 +68,8 @@ const HeroSlide = ({ movie }: { movie: IMovie }) => {
             name="watch-now"
             className={cn(
               watchBtn,
-              ` bg-[#ff0000] shadow-glow
-             text-shadow text-secColor `
+              ` bg-bear-brown shadow-glow
+             text-shadow text-secColor `,
             )}
             onClick={handleWatchNow}
           >

@@ -9,6 +9,10 @@ module.exports = {
       },
       colors: {
         black: "#191624",
+        'dark-bg': '#141414',
+        'bear-brown': '#8B4513',
+        'bear-light': '#A0522D',
+        'bear-dark': '#654321',
       },
 
       textColor: {
@@ -23,8 +27,9 @@ module.exports = {
         blackOverlay: "rgba(0, 0 ,0 ,0.3)",
       },
       boxShadow: {
-        glow: "0 0 18px rgb(255, 0, 0, 0.7);",
-        glowLight: "0 0 24px rgb(255, 0, 0, 0.5)",
+        glow: "0 0 18px rgba(139, 69, 19, 0.7)",
+        glowLight: "0 0 24px rgba(139, 69, 19, 0.5)",
+        enhanced: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
       },
     },
     fontFamily: {

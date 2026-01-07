@@ -5,12 +5,12 @@ import { useMediaQuery } from "usehooks-ts";
 import { useTheme } from "@/context/themeContext";
 import { cn } from "@/utils/helper";
 
-interface SkelatonLoaderProps {
+interface SkeletonLoaderProps {
   className?: string;
   isMoviesSliderLoader?: boolean;
 }
 
-export const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
+export const SkeletonLoader: FC<SkeletonLoaderProps> = memo(
   ({ className, isMoviesSliderLoader = true }) => {
     const { theme } = useTheme();
     const isThemeLight = theme === "Light";
@@ -21,7 +21,7 @@ export const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
       isMoviesSliderLoader
         ? `flex flex-row items-center gap-[15px] overflow-hidden `
         : `flex flex-row flex-wrap items-center xs:gap-4 gap-[14px] justify-center `,
-      className
+      className,
     );
 
     const arrSize = isMoviesSliderLoader
@@ -50,7 +50,7 @@ export const SkelatonLoader: FC<SkelatonLoaderProps> = memo(
         </div>
       </SkeletonTheme>
     );
-  }
+  },
 );
 
 export const Loader = memo(() => {

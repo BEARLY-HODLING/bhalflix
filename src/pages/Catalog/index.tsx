@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { FiLoader } from "react-icons/fi";
 
-
-import { MovieCard, SkelatonLoader } from "@/common";
+import { MovieCard, SkeletonLoader } from "@/common";
 import { CatalogHeader, Search } from "./components";
 import { useGetShowsQuery } from "@/services/TMDB";
 import { smallMaxWidth } from "@/styles";
@@ -48,21 +47,22 @@ const Catalog = () => {
     <>
       <CatalogHeader category={String(category)} />
       <section className={`${smallMaxWidth} `}>
-        <Search setQuery={setQuery}/>
+        <Search setQuery={setQuery} />
 
         {isLoading || isCategoryChanged ? (
-          <SkelatonLoader isMoviesSliderLoader={false} />
+          <SkeletonLoader isMoviesSliderLoader={false} />
         ) : (
-          <div
-          
-            className="flex flex-wrap xs:gap-4 gap-[14px] justify-center"
-          >
+          <div className="flex flex-wrap xs:gap-4 gap-[14px] justify-center">
             {shows?.map((movie) => (
               <div
                 key={movie.id}
                 className="flex flex-col xs:gap-4 gap-2 xs:max-w-[170px] max-w-[124px] rounded-lg lg:mb-6 md:mb-5 sm:mb-4 mb-[10px]"
               >
-                <MovieCard movie={movie} category={String(category)} />
+                <MovieCard
+                  movie={movie}
+                  category={String(category)}
+                  showWatchlistBadge={category === "tv"}
+                />
               </div>
             ))}
           </div>
@@ -70,9 +70,8 @@ const Catalog = () => {
 
         {isFetching && !isCategoryChanged ? (
           <div className="my-4">
-            <FiLoader className="mx-auto dark:text-gray-300 w-5 h-5 animate-spin"/>
+            <FiLoader className="mx-auto dark:text-gray-300 w-5 h-5 animate-spin" />
           </div>
- 
         ) : (
           <div className="w-full flex items-center justify-center">
             <button
@@ -81,7 +80,7 @@ const Catalog = () => {
                 setPage(page + 1);
               }}
               disabled={isFetching}
-              className="sm:py-2 xs:py-[6px] py-1 sm:px-4 xs:px-3 px-[10.75px] bg-[#ff0000] text-gray-50 rounded-full md:text-[15.25px] sm:text-[14.75px] xs:text-[14px] text-[12.75px] shadow-md hover:-translate-y-1 transition-all duration-300 font-medium font-nunito my-4"
+              className="sm:py-2 xs:py-[6px] py-1 sm:px-4 xs:px-3 px-[10.75px] bg-bear-brown text-gray-50 rounded-full md:text-[15.25px] sm:text-[14.75px] xs:text-[14px] text-[12.75px] shadow-md hover:-translate-y-1 transition-all duration-300 font-medium font-nunito my-4"
             >
               Load more
             </button>

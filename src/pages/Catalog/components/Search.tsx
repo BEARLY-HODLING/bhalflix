@@ -31,7 +31,7 @@ const Search: React.FC<SearchProps> = ({ setQuery }) => {
       />
       <button
         type="submit"
-        className="text-[18px] -ml-[32px] text-[#ff0000] z-[1]"
+        className="text-[18px] -ml-[32px] text-bear-brown z-[1]"
       >
         <GoSearch />
       </button>
